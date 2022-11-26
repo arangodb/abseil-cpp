@@ -26,7 +26,6 @@
 #define ABSL_CRC_CRC32C_H_
 
 #include <cstdint>
-#include <ostream>
 
 #include "absl/crc/internal/crc32c_inline.h"
 #include "absl/strings/string_view.h"
@@ -161,13 +160,6 @@ crc32c_t RemoveCrc32cPrefix(crc32c_t prefix_crc, crc32c_t full_string_crc,
 // This operation has a runtime cost of O(log(`suffix_len`))
 crc32c_t RemoveCrc32cSuffix(crc32c_t full_string_crc, crc32c_t suffix_crc,
                             size_t suffix_length);
-
-// operator<<
-//
-// Streams the CRC32C value `crc` to the stream `os`.
-inline std::ostream& operator<<(std::ostream& os, crc32c_t crc) {
-  return os << static_cast<uint32_t>(crc);
-}
 
 ABSL_NAMESPACE_END
 }  // namespace absl

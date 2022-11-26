@@ -13,6 +13,11 @@
 // limitations under the License.
 
 #include "absl/crc/crc32c.h"
+#include <ostream>
+
+inline std::ostream& operator<<(std::ostream& os, absl::crc32c_t crc) {
+  return os << static_cast<uint32_t>(crc);
+}
 
 #include <algorithm>
 #include <cstdint>
