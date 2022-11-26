@@ -26,7 +26,7 @@
 // most performance gains.
 
 // We need CRC (part of SSE 4.2) and PCLMULQDQ instructions.
-#if defined(__SSE4_2__) && defined(__PCLMUL__)
+#if defined(__SSE4_2__) && defined(__PCLMUL__) && !defined(_MSC_VER)
 
 #include <x86intrin.h>
 #define ABSL_CRC_INTERNAL_HAVE_X86_SIMD
