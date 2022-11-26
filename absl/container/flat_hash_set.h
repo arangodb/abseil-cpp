@@ -431,17 +431,20 @@ class flat_hash_set
   //
   // Returns the allocator function associated with this `flat_hash_set`.
   using Base::get_allocator;
+  using Base::alloc_ref;
 
   // flat_hash_set::hash_function()
   //
   // Returns the hashing function used to hash the keys within this
   // `flat_hash_set`.
   using Base::hash_function;
+  using Base::hash_ref;
 
   // flat_hash_set::key_eq()
   //
   // Returns the function used for comparing keys equality.
   using Base::key_eq;
+  using Base::eq_ref;
 };
 
 // erase_if(flat_hash_set<>, Pred)

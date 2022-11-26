@@ -2290,6 +2290,7 @@ class raw_hash_set {
 
   HashtablezInfoHandle& infoz() { return settings_.template get<1>(); }
 
+ public:
   hasher& hash_ref() { return settings_.template get<2>(); }
   const hasher& hash_ref() const { return settings_.template get<2>(); }
   key_equal& eq_ref() { return settings_.template get<3>(); }
@@ -2299,6 +2300,7 @@ class raw_hash_set {
     return settings_.template get<4>();
   }
 
+ private:
   // TODO(alkis): Investigate removing some of these fields:
   // - ctrl/slots can be derived from each other
   // - size can be moved into the slot array

@@ -514,17 +514,20 @@ class node_hash_map
   //
   // Returns the allocator function associated with this `node_hash_map`.
   using Base::get_allocator;
+  using Base::alloc_ref;
 
   // node_hash_map::hash_function()
   //
   // Returns the hashing function used to hash the keys within this
   // `node_hash_map`.
   using Base::hash_function;
+  using Base::hash_ref;
 
   // node_hash_map::key_eq()
   //
   // Returns the function used for comparing keys equality.
   using Base::key_eq;
+  using Base::eq_ref;
 };
 
 // erase_if(node_hash_map<>, Pred)
