@@ -2646,6 +2646,7 @@ class raw_hash_set {
   }
   HashtablezInfoHandle& infoz() { return common().infoz(); }
 
+ public:
   hasher& hash_ref() { return settings_.template get<1>(); }
   const hasher& hash_ref() const { return settings_.template get<1>(); }
   key_equal& eq_ref() { return settings_.template get<2>(); }
@@ -2655,6 +2656,7 @@ class raw_hash_set {
     return settings_.template get<3>();
   }
 
+ private:
   // Make type-specific functions for this type's PolicyFunctions struct.
   static size_t hash_slot_fn(void* set, void* slot) {
     auto* h = static_cast<raw_hash_set*>(set);

@@ -421,6 +421,7 @@ class node_hash_set
   // node_hash_set::get_allocator()
   //
   // Returns the allocator function associated with this `node_hash_set`.
+  using Base::alloc_ref;
   using Base::get_allocator;
 
   // node_hash_set::hash_function()
@@ -428,10 +429,12 @@ class node_hash_set
   // Returns the hashing function used to hash the keys within this
   // `node_hash_set`.
   using Base::hash_function;
+  using Base::hash_ref;
 
   // node_hash_set::key_eq()
   //
   // Returns the function used for comparing keys equality.
+  using Base::eq_ref;
   using Base::key_eq;
 };
 

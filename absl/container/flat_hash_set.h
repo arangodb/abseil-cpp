@@ -430,6 +430,7 @@ class flat_hash_set
   // flat_hash_set::get_allocator()
   //
   // Returns the allocator function associated with this `flat_hash_set`.
+  using Base::alloc_ref;
   using Base::get_allocator;
 
   // flat_hash_set::hash_function()
@@ -437,10 +438,12 @@ class flat_hash_set
   // Returns the hashing function used to hash the keys within this
   // `flat_hash_set`.
   using Base::hash_function;
+  using Base::hash_ref;
 
   // flat_hash_set::key_eq()
   //
   // Returns the function used for comparing keys equality.
+  using Base::eq_ref;
   using Base::key_eq;
 };
 
