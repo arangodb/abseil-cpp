@@ -44,13 +44,13 @@ enum class crc32c_t : uint32_t {};
 //
 // Converts a uint32_t value to crc32c_t. This API is necessary in C++14
 // and earlier. Code targeting C++17-or-later can instead use `crc32c_t{n}`.
-inline crc32c_t ToCrc32c(uint32_t n) {
+constexpr crc32c_t ToCrc32c(uint32_t n) {
   return static_cast<crc32c_t>(n);
 }
 // operator^
 //
 // Performs a bitwise XOR on two CRC32C values
-inline crc32c_t operator^(crc32c_t lhs, crc32c_t rhs) {
+constexpr crc32c_t operator^(crc32c_t lhs, crc32c_t rhs) {
   const auto lhs_int = static_cast<uint32_t>(lhs);
   const auto rhs_int = static_cast<uint32_t>(rhs);
   return ToCrc32c(lhs_int ^ rhs_int);
