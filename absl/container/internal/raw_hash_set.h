@@ -172,7 +172,6 @@
 #ifndef ABSL_CONTAINER_INTERNAL_RAW_HASH_SET_H_
 #define ABSL_CONTAINER_INTERNAL_RAW_HASH_SET_H_
 
-#include <algorithm>
 #include <cmath>
 #include <cstdint>
 #include <cstring>
