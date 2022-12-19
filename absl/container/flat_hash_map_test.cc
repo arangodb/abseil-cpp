@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "absl/container/flat_hash_map.h"
+#include "absl/algorithm/container.h"
 
 #include <memory>
 
@@ -23,6 +24,9 @@
 #include "absl/container/internal/unordered_map_members_test.h"
 #include "absl/container/internal/unordered_map_modifiers_test.h"
 #include "absl/types/any.h"
+
+static_assert(absl::container_algorithm_internal::IsUnorderedContainer<
+              absl::flat_hash_map<int, int>>::value);
 
 namespace absl {
 ABSL_NAMESPACE_BEGIN
@@ -150,9 +154,7 @@ struct Hash {
 
 struct Eq {
   using is_transparent = void;
-  bool operator()(size_t lhs, size_t rhs) const {
-    return lhs == rhs;
-  }
+  bool operator()(size_t lhs, size_t rhs) const { return lhs == rhs; }
   bool operator()(size_t lhs, const LazyInt& rhs) const {
     return lhs == rhs.value;
   }

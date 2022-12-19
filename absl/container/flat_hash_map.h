@@ -35,7 +35,6 @@
 #include <type_traits>
 #include <utility>
 
-#include "absl/algorithm/container.h"
 #include "absl/base/macros.h"
 #include "absl/container/internal/container_memory.h"
 #include "absl/container/internal/hash_function_defaults.h"  // IWYU pragma: export
@@ -602,6 +601,9 @@ struct FlatHashMapPolicy {
 }  // namespace container_internal
 
 namespace container_algorithm_internal {
+
+template <typename T>
+struct IsUnorderedContainer;
 
 // Specialization of trait in absl/algorithm/container.h
 template <class Key, class T, class Hash, class KeyEqual, class Allocator>
