@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "absl/container/flat_hash_map.h"
+#include "absl/strings/cord.h"
 #include "absl/algorithm/container.h"
 
 #include <memory>
@@ -72,6 +73,15 @@ using UniquePtrMapTypes = ::testing::Types<Map<int, std::unique_ptr<int>>>;
 
 INSTANTIATE_TYPED_TEST_SUITE_P(FlatHashMap, UniquePtrModifiersTest,
                                UniquePtrMapTypes);
+
+TEST(FlatHashMap, Cord) {
+  absl::Cord cord;
+  cord.Append("abcd");
+  absl::flat_hash_map<absl::Cord, int> set;
+  set[cord] = 10;
+  EXPECT_EQ(set[cord], 10);
+}
+
 
 TEST(FlatHashMap, StandardLayout) {
   struct Int {

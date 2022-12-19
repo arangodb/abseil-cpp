@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "absl/algorithm/container.h"
+#include "absl/strings/cord.h"
 #include "absl/container/flat_hash_set.h"
 
 #include <vector>
@@ -63,6 +64,14 @@ INSTANTIATE_TYPED_TEST_SUITE_P(FlatHashSet, ConstructorTest, SetTypes);
 INSTANTIATE_TYPED_TEST_SUITE_P(FlatHashSet, LookupTest, SetTypes);
 INSTANTIATE_TYPED_TEST_SUITE_P(FlatHashSet, MembersTest, SetTypes);
 INSTANTIATE_TYPED_TEST_SUITE_P(FlatHashSet, ModifiersTest, SetTypes);
+
+TEST(FlatHashSet, Cord) {
+  absl::Cord cord;
+  cord.Append("abcd");
+  absl::flat_hash_set<absl::Cord> set;
+  set.insert(cord);
+  EXPECT_TRUE(set.contains(cord));
+}
 
 TEST(FlatHashSet, EmplaceString) {
   std::vector<std::string> v = {"a", "b"};
