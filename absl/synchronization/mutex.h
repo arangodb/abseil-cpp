@@ -148,6 +148,19 @@ struct SynchWaitParams;
 
 class ABSL_LOCKABLE Mutex {
  public:
+  // std-like API
+  bool try_lock() { return TryLock(); }
+
+  void lock() { Lock(); }
+
+  void unlock() { Unlock(); }
+
+  bool try_lock_shared() { return ReaderTryLock(); }
+
+  void lock_shared() { ReaderLock(); }
+
+  void unlock_shared() { ReaderUnlock(); }
+
   // Creates a `Mutex` that is not held by anyone. This constructor is
   // typically used for Mutexes allocated on the heap or the stack.
   //
