@@ -497,12 +497,24 @@ using swap_internal::StdSwapIsUnconstrained;
 // there.
 //
 // TODO(b/275003464): remove the opt-out once the bug is fixed.
-#if ABSL_HAVE_BUILTIN(__is_trivially_relocatable) && \
+#if ABSL_HAVE_BUILTIN(__builtin_is_cpp_trivially_relocatable) && \
     !(defined(__clang__) && (defined(_WIN32) || defined(_WIN64)))
 template <class T>
 struct is_trivially_relocatable
     : std::integral_constant<bool, __builtin_is_cpp_trivially_relocatable(T)> {
 };
+#elif ABSL_HAVE_BUILTIN(__is_trivially_relocatable) && defined(__clang__) && \
+    !(defined(_WIN32) || defined(_WIN64)) && !defined(__APPLE__) &&          \
+    !defined(__NVCC__)
+// https://github.com/llvm/llvm-project/pull/139061
+//  __is_trivially_relocatable is deprecated.
+// TODO(b/325479096): Remove this case.
+template <class T>
+struct is_trivially_relocatable
+    : std::integral_constant<bool,
+                             std::is_trivially_copyable_v<T> ||
+                                 (__is_trivially_relocatable(T) &&
+                                  std::is_trivially_move_assignable_v<T>)> {};
 #else
 // Otherwise we use a fallback that detects only those types we can feasibly
 // detect. Any time that has trivial move-construction and destruction
